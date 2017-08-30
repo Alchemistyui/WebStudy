@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>轮播图</title>
+
+<style>
+	#view {
+		width: 1000px;
+		height: 450px;
+		overflow: hidden;
+		position: relative;
+	}
+	
+	#container {
+		width: 6000px;
+		height: 450px;
+		left: -1000px;
+		position: absolute;
+		z-index: 1;
+	}
+	
+	#container img {
+		vertical-align: top;
+		float: left;
+	}
+	
+	#btns { 
+		position: absolute; 
+		width: 300px; 
+		z-index: 2; 
+		bottom: 15px; 
+		margin-left: 550px;
+		
+		}
+    #btns span { 
+			cursor: pointer;
+			float: left; 
+			border: none; 
+			width: 50px; 
+			height: 3px; 
+			border-radius: 20%; 
+			background: #D7D4D4; 
+			margin-left: 10px;
+	}
+    #btns .on {  
+			background: #2E2E2E;
+	}
+	
+	#controll {
+		float: left;
+		margin: 0px;
+		z-index: 2;
+		cursor: pointer; 
+		cursor: pointer;
+		position: absolute;
+		display: none;
+	}
+	
+	#pre img {
+		width: 70px;
+		margin-top: 200px;
+		margin-left: 10px;
+	}
+	
+	#next img {
+		width: 70px;
+		margin-top: 200px;
+		margin-left: 830px;
+	}
+	
+	#view:hover #controll {
+		display: block;
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+	
+	window.onload = function() {
+		
+		var container = document.getElementById('container');
+		var btns = document.getElementById('btns');
+		var next = document.getElementById('next');
+		var pre = document.getElementById('pre');
+		var active = false;
+		var len = 4;
+		var index = 0;
+		
+		
+		function roll(distance) {
+			
+			if (distance == 0) {
+				return;
+			}
+			
+			active = true;
+			var time = 300;
+			var interval = 10;
+			var speed = distance / (time / interval);
+			var left = parseInt (container.style.left);
+			
+			function move() {
+				if ((speed > 0 && left < left + distance) || (speed < 0 && left > left + distance)) {
+					left = left + speed;
+					setTimeout(move(), interval);
+				}
+				else {
+					left = left + distance + 'px';
+					if (left > -1000 ) {
+						container.style.left = (-1000 * len) + 'px';
+					}
+					if (left < (-1000 * len)) {
+						container.style.left = -1000 + 'px';
+					}
+					active = false;
+				}
+			}
+			
+			move();
+		}
+		
+		
+		
+		function nowButton() {
+			for (var i = 0; i < btns.length; i++) {
+				if (btns[i].className == 'on') {
+					btns[i].className = '';
+					break;
+				}
+				btns[index].className = 'on';
+			}
+		}
+		
+		
+		
+		next.onclick = function after() {
+			if (active == true) {
+				return;
+			}
+			if (index == 3) {
+				index = 0;
+			}
+			else {
+				index++;
+			}
+			roll(-1000);
+			nowButton();
+			
+		}
+		
+		
+		pre.onclick = function before() {
+			if (active == true) {
+				return;
+			}
+			if (index == 0) {
+				index = 3;
+			}
+			else {
+				index--;
+			}
+			roll(1000);
+			nowButton();
+		}
+		
+		for (var i = 0; i < btns.length; i++) {
+			btns[i].onclick = function() {
+				
+			}
+		}
+		
+		
+		function play() {
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	</script>
+
+</head>
+
+<body>
+
+<div id="view">
+	<div id="container">
+		<img src="images/4.jpg" alt="">
+		<img src="images/1.jpg" alt="">
+		<img src="images/2.jpg" alt="">
+		<img src="images/3.jpg" alt="">
+		<img src="images/4.jpg" alt="">
+		<img src="images/1.jpg" alt="">
+	</div>
+	<div id="btns">
+	<span index="1" class="on"></span>
+	<span index="2"></span>
+	<span index="3"></span>
+	<span index="4"></span>
+    </div>
+
+    <div id="controll">
+    	<a href="before()" id="pre"><img src="images/left.png" alt=""></a>
+    	<a href="after()" id="next"><img src="images/right.png" alt=""></a>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
