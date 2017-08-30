@@ -86,7 +86,8 @@
 		var active = false;
 		var len = 4;
 		var index = 0;
-		
+		var interval = 3000;
+		var timer;
 		
 		function roll(distance) {
 			
@@ -135,7 +136,7 @@
 		
 		
 		next.onclick = function after() {
-			if (active == true) {
+			if (active) {
 				return;
 			}
 			if (index == 3) {
@@ -151,36 +152,59 @@
 		
 		
 		pre.onclick = function before() {
-			if (active == true) {
+			if (active) {
 				return;
 			}
 			if (index == 0) {
 				index = 3;
 			}
 			else {
-				index--;
+				index -= 1;
 			}
 			roll(1000);
 			nowButton();
 		}
 		
+		
+		
 		for (var i = 0; i < btns.length; i++) {
 			btns[i].onclick = function() {
-				
+				if (active) {
+					return;
+				}
+				if (btns[i].className == 'on') {
+					return;
+				}
+				var myIndex = parseInt(this.getAttribute('index'));
+                    var distance = -1000 * (myIndex - index);
+
+                    roll(distance);
+                    index = myIndex;
+                    nowButton();
 			}
-		}
-		
-		
-		function play() {
 			
 		}
 		
 		
+		function play() {
+			timer = setTimeout(function(){
+				after();
+				play;
+			}, interval)
+		}
+		
+		
+		function stop() {
+			clearTimeout(timer);
+		}
 		
 		
 		
-		
-		
+		view.onmouseover = stop();
+        view.onmouseout = play;
+
+        play();
+
 		
 		
 		
