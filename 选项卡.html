@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<script language="javascript" type="text/javascript">
+	window.onload = function () {
+		var tab = document.getElementById("tab");
+		var articleList = document.getElementById("articleList");
+		var  btn = tab.getElementsByTagName("button");
+		var  div = articleList.getElementsByTagName("div");
+		
+	
+	
+	for (var i = 0; i < btn.length; i++) {
+		
+		btn[i].index = i;
+		btn[i].onclick = function () {
+			
+			for (var i = 0; i < btn.length; i++) {
+				btn[i].className = "";
+				div[i].style.display = "none";
+				
+			}
+			 
+			
+			this.className = "active"
+			
+			div[this.index].style.display = "block";
+			
+		}
+	}
+	}
+	
+	</script>
+
+
+<style>
+	#articleList div {
+		display: none;
+	}
+	</style>
+</head>
+
+<body>
+<div>
+	<button class="active">11</button>
+	<button>22</button>
+	<button>33</button>
+	<div style="display: block;">111111</div>
+	<div>2222222</div>
+	<div>3333333</div>
+</div>
+
+
+
+<div style="min-width: 390px;max-width: 390px;height: 350px;display: table-cell;vertical-align: top;background-color: white;">
+
+				<div style="display:table-cell;width: 40px;padding-top: 50px;" id="tab">
+
+					<table>
+
+						<tr>
+
+							<button class="active">11</button>
+						</tr>
+
+						<tr>
+
+							<button>22</button>
+
+						</tr>
+
+						<tr>
+
+							<button>33</button>
+
+						</tr>
+
+						<tr>
+
+							<button>44</button>
+
+						</tr>
+
+						<tr>
+
+							<button>55</button>
+
+						</tr>
+
+						<tr>
+
+							<button>66</button>
+
+						</tr>
+
+					</table>
+
+				</div>
+
+				<div style="display:table-cell;width: 300px;word-break:break-all;" id="articleList">
+
+					<!-- Wengti -->
+
+					<div style="display: block;">111111</div>
+	                <div>2222222</div>
+	                <div>3333333</div>
+	                <div>4444444</div>
+	                <div>5555</div>
+	                <div>66</div>
+				</div>
+
+		</div>
+
+
+
+
+</body>
+</html>
