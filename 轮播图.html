@@ -1,18 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>轮播图</title>
-
-<style>
-	#view {
+    <meta charset="UTF-8">
+    <title>emmmm</title>
+    <style type="text/css">
+        #container {
 		width: 1000px;
 		height: 450px;
 		overflow: hidden;
 		position: relative;
 	}
 	
-	#container {
+	#list {
 		width: 6000px;
 		height: 450px;
 		left: -1000px;
@@ -20,20 +19,20 @@
 		z-index: 1;
 	}
 	
-	#container img {
+	#list img {
 		vertical-align: top;
 		float: left;
 	}
 	
-	#btns { 
+	#buttons { 
 		position: absolute; 
 		width: 300px; 
 		z-index: 2; 
 		bottom: 15px; 
-		margin-left: 550px;
+		margin-left: 400px;
 		
 		}
-    #btns span { 
+    #buttons span { 
 			cursor: pointer;
 			float: left; 
 			border: none; 
@@ -43,21 +42,21 @@
 			background: #D7D4D4; 
 			margin-left: 10px;
 	}
-    #btns .on {  
+    #buttons .on {  
 			background: #2E2E2E;
 	}
 	
-	#controll {
+	.controll {
 		float: left;
 		margin: 0px;
 		z-index: 2;
 		cursor: pointer; 
 		cursor: pointer;
 		position: absolute;
-		display: none;
+        display: none;
 	}
 	
-	#pre img {
+	#prev img {
 		width: 70px;
 		margin-top: 200px;
 		margin-left: 10px;
@@ -66,184 +65,152 @@
 	#next img {
 		width: 70px;
 		margin-top: 200px;
-		margin-left: 830px;
+		margin-left: 920px;
 	}
 	
-	#view:hover #controll {
+	#container:hover .controll {
 		display: block;
 	}
 	
-	</style>
-	
-	<script type="text/javascript">
-	
-	window.onload = function() {
 		
-		var container = document.getElementById('container');
-		var btns = document.getElementById('btns');
-		var next = document.getElementById('next');
-		var pre = document.getElementById('pre');
-		var active = false;
-		var len = 4;
-		var index = 0;
-		var interval = 3000;
-		var timer;
-		
-		function roll(distance) {
-			
-			if (distance == 0) {
-				return;
-			}
-			
-			active = true;
-			var time = 300;
-			var interval = 10;
-			var speed = distance / (time / interval);
-			var left = parseInt (container.style.left);
-			
-			function move() {
-				if ((speed > 0 && left < left + distance) || (speed < 0 && left > left + distance)) {
-					left = left + speed;
-					setTimeout(move(), interval);
-				}
-				else {
-					left = left + distance + 'px';
-					if (left > -1000 ) {
-						container.style.left = (-1000 * len) + 'px';
-					}
-					if (left < (-1000 * len)) {
-						container.style.left = -1000 + 'px';
-					}
-					active = false;
-				}
-			}
-			
-			move();
-		}
-		
-		
-		
-		function nowButton() {
-			for (var i = 0; i < btns.length; i++) {
-				if (btns[i].className == 'on') {
-					btns[i].className = '';
-					break;
-				}
-				btns[index].className = 'on';
-			}
-		}
-		
-		
-		
-		next.onclick = function after() {
-			if (active) {
-				return;
-			}
-			if (index == 3) {
-				index = 0;
-			}
-			else {
-				index++;
-			}
-			roll(-1000);
-			nowButton();
-			
-		}
-		
-		
-		pre.onclick = function before() {
-			if (active) {
-				return;
-			}
-			if (index == 0) {
-				index = 3;
-			}
-			else {
-				index -= 1;
-			}
-			roll(1000);
-			nowButton();
-		}
-		
-		
-		
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].onclick = function() {
-				if (active) {
-					return;
-				}
-				if (btns[i].className == 'on') {
-					return;
-				}
-				var myIndex = parseInt(this.getAttribute('index'));
-                    var distance = -1000 * (myIndex - index);
+    </style>
+    <script type="text/javascript">
 
-                    roll(distance);
+        window.onload = function () {
+            var container = document.getElementById('container');
+            var list = document.getElementById('list');
+            var buttons = document.getElementById('buttons').getElementsByTagName('span');
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var index = 1;
+            var len = 4;
+            var animated = false;
+            var interval = 3000;
+            var timer;
+
+
+            function animate (offset) {
+                if (offset == 0) {
+                    return;
+                }
+                animated = true;
+                var time = 300;
+                var inteval = 10;
+                var speed = offset/(time/inteval);
+                var left = parseInt(list.style.left) + offset;
+
+                var go = function (){
+                    if ( (speed > 0 && parseInt(list.style.left) < left) || (speed < 0 && parseInt(list.style.left) > left)) {
+                        list.style.left = parseInt(list.style.left) + speed + 'px';
+                        setTimeout(go, inteval);
+                    }
+                    else {
+                        list.style.left = left + 'px';
+                        if(left>-1000){
+                            list.style.left = -1000 * len + 'px';
+                        }
+                        if(left<(-1000 * len)) {
+                            list.style.left = '-1000px';
+                        }
+                        animated = false;
+                    }
+                }
+                go();
+            }
+
+            function showButton() {
+                for (var i = 0; i < buttons.length ; i++) {
+                    if( buttons[i].className == 'on'){
+                        buttons[i].className = '';
+                        break;
+                    }
+                }
+                buttons[index - 1].className = 'on';
+            }
+
+            function play() {
+                timer = setTimeout(function () {
+                    next.onclick();
+                    play();
+                }, interval);
+            }
+            function stop() {
+                clearTimeout(timer);
+            }
+
+            next.onclick = function () {
+                if (animated) {
+                    return;
+                }
+                if (index == 4) {
+                    index = 1;
+                }
+                else {
+                    index += 1;
+                }
+                animate(-1000);
+                showButton();
+            }
+            prev.onclick = function () {
+                if (animated) {
+                    return;
+                }
+                if (index == 1) {
+                    index = 4;
+                }
+                else {
+                    index -= 1;
+                }
+                animate(1000);
+                showButton();
+            }
+
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].onclick = function () {
+                    if (animated) {
+                        return;
+                    }
+                    if(this.className == 'on') {
+                        return;
+                    }
+                    var myIndex = parseInt(this.getAttribute('index'));
+                    var offset = -1000 * (myIndex - index);
+
+                    animate(offset);
                     index = myIndex;
-                    nowButton();
-			}
-			
-		}
-		
-		
-		function play() {
-			timer = setTimeout(function(){
-				after();
-				play;
-			}, interval)
-		}
-		
-		
-		function stop() {
-			clearTimeout(timer);
-		}
-		
-		
-		
-		view.onmouseover = stop();
-        view.onmouseout = play;
+                    showButton();
+                }
+            }
 
-        play();
+            container.onmouseover = stop;
+            container.onmouseout = play;
 
-		
-		
-		
-		
-	}
-	
-	
-	
-	
-	</script>
+            play();
 
+        }
+    </script>
 </head>
-
 <body>
 
-<div id="view">
-	<div id="container">
-		<img src="images/4.jpg" alt="">
-		<img src="images/1.jpg" alt="">
-		<img src="images/2.jpg" alt="">
-		<img src="images/3.jpg" alt="">
-		<img src="images/4.jpg" alt="">
-		<img src="images/1.jpg" alt="">
-	</div>
-	<div id="btns">
-	<span index="1" class="on"></span>
-	<span index="2"></span>
-	<span index="3"></span>
-	<span index="4"></span>
+<div id="container">
+    <div id="list" style="left: -1000px;">
+        <img src="images/4.jpg" alt="1"/>
+        <img src="images/1.jpg" alt="1"/>
+        <img src="images/2.jpg" alt="2"/>
+        <img src="images/3.jpg" alt="3"/>
+        <img src="images/4.jpg" alt="4"/>
+        <img src="images/1.jpg" alt="4"/>
     </div>
-
-    <div id="controll">
-    	<a href="before()" id="pre"><img src="images/left.png" alt=""></a>
-    	<a href="after()" id="next"><img src="images/right.png" alt=""></a>
+    <div id="buttons">
+        <span index="1" class="on"></span>
+        <span index="2"></span>
+        <span index="3"></span>
+        <span index="4"></span>
     </div>
+    <a href="javascript:;" id="prev" class="controll"><img src="images/left.png" alt=""></a>
+    <a href="javascript:;" id="next" class="controll"><img src="images/right.png" alt=""></a>
+    
 </div>
-
-
-
 
 </body>
 </html>
