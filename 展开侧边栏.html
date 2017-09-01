@@ -3,8 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
+<script src="js/侧边栏.js" type="text/javascript"></script>
+<style>
+	ul {
+		list-style-type: none;
+		padding: 10px;
+	}
+	
+	#main  {
+		background-color: azure;
+		width: 90px;
+	}
+	
+	.sub {
+		display: none;
+	}
+	
+	.sub li {
+		background-color:beige;
+	}
+	</style>
+
+<script type="text/javascript">
+      	window.onload = function() {
+		var main = document.getElementById('main');
+		var mainA = main.getElementsByClassName('mainA');
+	
+		
+		for (var i = 0; i < mainA.length; i++) {
+          alert(mainA[i].id);
+			mainA[i].onclick = function() {
+				alert(mainA[i].id);
+			   var sub = mainA[i].getElementsByTagName('ul');
+				alert(sub.className);
+			   sub.style.display = block;
+		}
+		}
+		
+	}
+	
+	</script>
+
+
 </head>
 
 <body>
+
+<div id="aside">
+	<ul id="main">
+		<li><a href="#" class="mainA" id="1">主选项1</a>
+		    <ul class="sub">
+		    	<li>次选项1</li>
+		    	<li>次选项2</li>
+		    	<li>次选项3</li>
+		    </ul>
+		</li>
+		<li><a href="#" class="mainA">主选项2</a>
+		    <ul class="sub">
+		    	<li>次选项1</li>
+		    	<li>次选项2</li>
+		    	<li>次选项3</li>
+		    </ul>
+		</li>
+		<li><a href="#" class="mainA">主选项3</a>
+		   <ul class="sub">
+		    	<li>次选项1</li>
+		    	<li>次选项2</li>
+		    	<li>次选项3</li>
+		    </ul>
+		</li>
+		<li><a href="#" class="mainA">主选项4</a>
+		   <ul class="sub">
+		    	<li>次选项1</li>
+		    	<li>次选项2</li>
+		    	<li>次选项3</li>
+		    </ul>
+		
+		</li>
+	</ul>
+</div>
+
+
 </body>
 </html>
