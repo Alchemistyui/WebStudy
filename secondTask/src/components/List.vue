@@ -16,8 +16,9 @@
 
 		<!-- 复选框 -->
 		<ul>
-			<li v-for="(man, index) in list">
-				<input type="checkbox" :value="man.name"  v-model="checked" v-on:click="isActive($event)">
+			<li v-for="(man, index) in list"  v-bind:class="{active: man.isActive}" v-on:click="itemIsActive(man)">
+				<input type="checkbox" :value="man.name"  v-model="checked"> 
+				<!-- v-on:click="isActive($event)"-->
 				<!-- 实现数据双向绑定的组件 -->
 				<v-edit-div v-model='man.name'></v-edit-div>
 				<v-edit-div v-model='man.age'></v-edit-div>
@@ -68,12 +69,7 @@ export default {
 			self.name = name;
 			self.age = age;
 			self.sex = sex;
-			alert(this.list.length);
-			// alert(self.name + self.age+self.sex);
-			this.list.push({ name:'Tom', age: 10, sex: 'Male' });
-			alert(this.list.length);
-			// ({name: self.name, age: self.age, sex: self.sex});
-
+			self.list.push({name: self.name, age: self.age, sex: self.sex});
 		});
 
 	},
@@ -84,16 +80,28 @@ export default {
 			this.list.splice(index,1);
 		},
 
-		isActive: function(li) {
-			if (li.isActive) {
-				li.isActive = false;
-			}
-			li.isActive = !(li.isActive);
-			alert(li.isActive);
-			document.querySelector(li).setAttribute('style', 'background:#fff');
 
+        //虽然这个代码无卵用写得不好，但是event的使用这一点还是值得学习的
+		// 使用javascript有关event标准属性
+		// isActive: function(event) {
+		// 	// currentTarget 事件属性返回其监听器触发事件的节点，即当前处理该事件的元素、文档或窗口。
+		// 	var li = event.currentTarget;
+
+		// 	li.isActive = !(li.isActive);
+		// 	alert(li.isActive);
+
+		// 	document.querySelector(li).setAttribute('style', 'background:#fff');
+
+		// },
+
+
+		itemIsActive: function (li) {
+			li.isActive = !(li.isActive);
 		}
+
 	},
+
+
 
     // 计算属性用于实现复选框全选功能
     computed: {

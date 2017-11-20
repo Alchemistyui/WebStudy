@@ -3,8 +3,7 @@
     
     <create-new></create-new>
     <list></list>
-<!-- 数组push没有实现，传值成功 -->
-<!-- 选中复选框时改变颜色没有实现 -->
+
   </div>
 
 </template>
