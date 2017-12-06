@@ -2,7 +2,10 @@
 	<div id="createNew">
 
 		<!-- input组 -->
-		<p>Name: <input v-model="name"></p>
+
+		<!-- 注意原生input都要有id，而且需要label的for属性等于其id -->
+		<p><label for="name">Name: </label><input id="name" v-model="name"></p>
+		<!-- 可以直接用number的type，正则表达式会帮助屏蔽非法输入 -->
 		<p>Age: <input v-model="age" placeholder="0"></p>
 		<p>Sex: 
 			<select v-model="selected">

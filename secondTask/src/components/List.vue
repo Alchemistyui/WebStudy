@@ -16,8 +16,9 @@
 
 		<!-- 复选框 -->
 		<ul>
-			<li v-for="(man, index) in list"  v-bind:class="{active: man.isActive}" v-on:click="itemIsActive(man)">
-				<input type="checkbox" :value="man.name"  v-model="checked"> 
+			<!-- 最好列表要用复数 -->
+			<li v-for="(man, index) in list"  v-bind:class="{active: man.isActive}">
+				<input type="checkbox" :value="man.name"  v-model="checked" v-on:click="itemIsActive(man)"> 
 				<!-- v-on:click="isActive($event)"-->
 				<!-- 实现数据双向绑定的组件 -->
 				<v-edit-div v-model='man.name'></v-edit-div>
@@ -35,6 +36,8 @@
 
 
 <script>
+// 使用let和const替代var以防止作用域的问题
+
 import bus from '../assets/eventBus'
 // 注册一个组件用于实现contenteditable的双向绑定
 import VEditDiv from './VEditDiv'
@@ -102,13 +105,15 @@ export default {
 	},
 
 
-
+	// watch的话会导致代码的冗余，经过计算得出的最好用计算属性
     // 计算属性用于实现复选框全选功能
     computed: {
     	allChecked: {
+    		// 检查下面的属性
     		get: function() {
     			return this.checkedCount == this.list.length;
     		},
+    		// 为属性赋值不是直接赋而是调用函数
     		set: function(value) {
     			if (value) {
     				this.checked = this.list.map(function(item) {
