@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<!-- <link href="wujiaweb.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="wuyeshouye.css"> -->
+<style type="text/css">
+html  {
+    padding: 0px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: Gotham, Helvetica Neue, Helvetica, Arial,"黑体";
+    font-size: 13px;
+    
+    margin-right: 0px;
+    
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    width: 1250px;
+    height: 100%;
+    height: auto;
+    background-color: #f2f2f2;
+
+}
+
+main{
+    width: 1230px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f2f2f2;
+    height: auto;
+    padding: 10px 10px 0px 10px;
+    font-family:"黑体";
+    font-size: 13px;
+}
+  
+a {
+    text-decoration: none;
+    color: #E16C00;
+}
+
+nav ul li img {
+    width: 40px;
+}
+
+#logo {
+    float: left;
+    margin-left: 10px;
+    
+}
+
+#question, #portrait {
+    float: right;
+    margin-right: 10px;
+}
+
+
+header {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+
+body{
+    height: 100%;
+    width: 1250px;
+    position: relative;
+} 
+
+nav ul {
+    background-color: #ee9147;
+    margin: 0px 0px 0px 0px;
+    list-style-type: none;
+    padding: 0px 0px 0px 0px;
+    height: 40px;
+    text-align: center;
+    text-align-last: center;
+    
+}
+
+nav ul li {
+    display: inline;
+    padding: 0px 5px 5px 10px;
+    margin: 0px;
+    height: 40px;
+    position:relative;
+    margin-left:0px;
+    padding-top:20px;
+    padding-left:0px;
+     
+     text-align: center;
+     
+}
+
+nav ul li .danghanglan:link, nav ul li .danghanglan:visited {
+    text-decoration: none;
+    color: #2F322A;
+    text-align: center;
+    float:left;
+    display: inline;
+    padding: 70px;
+    padding-bottom: 0px;
+    padding-top: 10px;
+    font-size: 120%;
+    font-weight: bold;
+    border-bottom: none;
+    
+    
+}
+
+.danghanglan {
+    height: 0px;
+}
+
+.select {
+    text-decoration: none;
+    color: #2F322A;
+    text-align: center;
+    float:left;
+    display: inline;
+    padding: 90px;
+    padding-bottom: 0px;
+    padding-top: 10px;
+    font-size: 120%;
+    font-weight: bold;
+    border-bottom: none;
+    background-color: #F7DA32;
+    height: 30px;
+    
+}
+/*
+nav ul li a:hover{ 
+width:78px;
+height:26px;
+line-height:28px;
+border:1px solid gray;
+color:gray;
+background:#FFF;
+    padding: 0px;
+}
+*/
+
+#footerblank {
+    height: 50px;
+}
+
+textarea {
+    padding: 0.85em 1.5em;
+    width: 150px;
+    height: 10px;
+    border: none;
+    border-radius: 2em;
+    background: #fff;
+    color: #535d92;
+    resize: none;
+}
+
+
+footer{
+    margin-top: 0px;
+    height:40px;
+    bottom:0;
+    left:0px;
+    background-color: #ee9147;
+    width: 1230px;
+    padding-left: 20px;
+    text-align: center;
+    padding-top: 1px;
+
+}
+
+.aside {
+    background-color: antiquewhite;
+    width: 150px;
+    float: left;
+}
+
+.aside ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.main {
+    margin: 0px 0px 0px 160px;
+}
+
+  #container {
+        width: 1250px;
+        height: 450px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    #list {
+        width: 7500px;
+        height: 450px;
+        left: -1250px;
+        position: absolute;
+        z-index: 1;
+    }
+    
+    #list img {
+        vertical-align: top;
+        float: left;
+    }
+    
+    #buttons { 
+        position: absolute; 
+        width: 300px; 
+        z-index: 2; 
+        bottom: 15px; 
+        margin-left: 500px;
+        
+        }
+    #buttons span { 
+            cursor: pointer;
+            float: left; 
+            border: none; 
+            width: 50px; 
+            height: 3px; 
+            border-radius: 20%; 
+            background: #ee9147; 
+            margin-left: 10px;
+    }
+    #buttons .on {  
+            background: #EBC745;
+    }
+    
+    .controll {
+        float: left;
+        margin: 0px;
+        z-index: 2;
+        cursor: pointer; 
+        cursor: pointer;
+        position: absolute;
+        display: none;
+    }
+
+    #next {
+            float: none;
+            margin-left: 1160px;
+        }
+    
+    #prev img {
+        width: 70px;
+        margin-top: 200px;
+        margin-left: 10px;
+    
+    }
+    
+    #next img {
+        width: 70px;
+        margin-top: 200px;
+        
+    }
+    
+    #container:hover .controll {
+        display: block;
+    }
+    
+
+.intro {
+    background-color: antiquewhite;
+    margin-top: 10px;
+    width: 410px;
+    float: left;
+    margin-right: 10px;
+    height: 250px;
+    
+}
+
+.intro a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    margin: 50px;
+    font-size: 120%;
+    
+}
+
+#tingcheAd {
+    background-image: url(../images/tingchejianjie.png);
+    
+}
+
+
+
+#jiazhenAd {
+    background-image: url(../images/jiazhengjianjie.png);
+    
+}
+
+#xiaohaiAd {
+    background-image: url(../images/xiaohaijianjie.png);
+    
+    margin: 0px;
+    margin-top: 10px;
+}
+
+#links {
+    height: 50px;
+    
+    margin-top: 260px;
+}
+
+#links a {
+    display: block;
+    float: left;
+    margin-left: 150px;
+    padding-top: 15px;
+    color: #ee9147;
+    text-decoration: none;
+    
+}
+
+
+</style>
+<script type="text/javascript" src="wujiaweb.js"></script>
+</head>
+
+<body>
+<header>
+	<nav>
+    	   <ul>
+    	   
+			<li><a href=""><img src="images/logo.JPG" alt="吾家" id="logo"></a></li>
+			  <li><a href=""><img src="images/question.png" alt="问题" id="question"></a></li>
+			  <li><a href=""><img src="images/portrait.png" alt="头像" id="portrait"></a></li> 
+            <li><a  href="wuyeshouye.html" class = "select">首页</a></li>
+			<li><a class="danghanglan" href="../吾家物管/tianjiakefu.html">客服人员</a></li>
+			<li><a class="danghanglan" href="../吾家物管/缴费/jiaofeizhuangtai.html" class = "select">小区管理</a></li>
+			<li><a class="danghanglan" href="../吾家物管/缴费/guanlixiangmu.html">物业管理</a></li>
+            <li><a class="danghanglan" href="../吾家物管/wuyezhanghu.html">物业账户</a></li>
+             
+	        
+		   </ul>
+		</nav>
+	
+</header>
+
+
+<div id="container">
+    <div id="list" style="left: -1250px;">
+        <img src="images/4.jpg" alt="1"/>
+        <img src="images/1.jpg" alt="1"/>
+        <img src="images/2.jpg" alt="2"/>
+        <img src="images/3.jpg" alt="3"/>
+        <img src="images/4.jpg" alt="4"/>
+        <img src="images/1.jpg" alt="4"/>
+    </div>
+    <div id="buttons">
+        <span index="1" class="on"></span>
+        <span index="2"></span>
+        <span index="3"></span>
+        <span index="4"></span>
+    </div>
+    <a  id="prev" class="controll"><img src="images/left.png" alt=""></a>
+    <a  id="next" class="controll"><img src="images/right.png" alt=""></a>
+    
+</div>
+
+<div class="intro" id="tingcheAd">
+	<a href="#">停车简介<br>
+	业主可根据自己的需求出租车位，为了方便管理和保障小区安全，采取车位长租的方式，租户或附近对车位有长期需求的人员则可租用业主车位。这样业主能够赚钱并且物业能够更好的利用资源。
+</a>
+</div>
+
+<div class="intro" id="jiazhenAd">
+	<a href="#">家政简介<br>
+    家政维修人员喜欢在小区里张贴小广告，引起管理的不便，但是业主需要的时候又找不到，所以将他家政维修信息整合起来，既能方便物业管理，也能方便业主寻找。	
+	</a>
+</div>
+
+<div class="intro" id="xiaohaiAd">
+	<a href="#">小孩托管简介<br>
+	业主忙没空带孩子时，可以将孩子托管给其他家庭主妇，专职带孩子会更加细心呵护孩子，孩子也可以和其他孩子玩耍交朋友。同时引入实名认证，评价机制，规范定价防止出现不安全和恶性竞价情况。
+</a>
+</div>
+
+<div id="links">
+	<a href="#">关于我们</a>
+	<a href="#">联系我们</a>
+	<a href="#">使用帮助</a>
+	<a href="#">服务条款</a>
+	<a href="#">使用帮助</a>
+</div>
+<div id="footerblank"></div>
+<footer>
+	<p>Copyright © 2017 吾家 保留一切权利。</p>
+</footer>
+
+</body>
+</html>
+
+
