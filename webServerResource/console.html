@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script type="text/javascript">
+function validate()
+{
+var port=document.getElementById("port").value
+submitOK="true"
+if (isNaN(port))
+ {
+ alert("端口号必须是数字")
+ submitOK="false"
+ }
+
+if (submitOK=="false")
+ {
+ return false
+ }
+}
+</script>
+</head>
+
+<body class="container-fluid">
+    <form  action="console.html?opt=xxx" method="GET" onsubmit="return validate()" class="form-horizontal" style="margin-top: 50px;">
+        <div class="form-group">
+            <label for="port" class="col-sm-4 control-label">服务器端口号</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="port" placeholder="端口号">
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-default">提交</button>
+        </div>
+    </div>
+
+</form>
+
+
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <table class="table table-striped">
+        <thead>操作日志</thead>
+        <tr>
+            <th>操作者</th>
+            <th>操作内容</th>
+        </tr>
+        <tr>
+            <td>January</td>
+            <td>$100</td>
+        </tr>
+    </table>
+</div>
+</body>
