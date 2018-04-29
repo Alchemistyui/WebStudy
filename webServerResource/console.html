@@ -5,34 +5,73 @@
     <title>控制台</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script type="text/javascript">
-function validate()
-{
-var port=document.getElementById("port").value
-submitOK="true"
-if (isNaN(port))
- {
- alert("端口号必须是数字")
- submitOK="false"
- }
- else {
-    alert("修改成功！")
- }
+    <script type="text/javascript">
+// loadXMLDoc()函数创建XMLHttpRequest对象，添加当服务器响应就绪时执行的函数，并将请求发送到服务器。
+// 当服务器响应就绪时，会构建一个 HTML 表格，从 XML 文件中提取节点（元素），最后使用已经填充了 XML 数据的 HTML 表格来更新 txtCDInfo 占位符
+        function loadXMLDoc(url) {
+            var xmlhttp;
+            var txt,x,xx,i;
+            if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp=new XMLHttpRequest();
+       }
+       else
+        {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange=function()
+      {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+            txt="<table  class='table table-striped'><thead>操作日志</thead><tr><th>操作者</th><th>操作内容</th></tr>";
+            x=xmlhttp.responseXML.documentElement.getElementsByTagName("CD");
+            for (i=0;i<x.length;i++)
+            {
+              txt=txt + "<tr>";
+              xx=x[i].getElementsByTagName("TITLE");
+              {
+                try
+                {
+                  txt=txt + "<td>" + xx[0].firstChild.nodeValue + "</td>";
+              }
+              catch (er)
+              {
+                  txt=txt + "<td> </td>";
+              }
+          }
+          xx=x[i].getElementsByTagName("ARTIST");
+          {
+            try
+            {
+              txt=txt + "<td>" + xx[0].firstChild.nodeValue + "</td>";
+          }
+          catch (er)
+          {
+              txt=txt + "<td> </td>";
+          }
+      }
+      txt=txt + "</tr>";
+  }
+  txt=txt + "</table>";
+  document.getElementById('txtCDInfo').innerHTML=txt;
+}
+}
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
 
-if (submitOK=="false")
- {
- return false
- }
+window.onload = function () {
+    loadXMLDoc('log.xml');
 }
 </script>
 </head>
 
 <body class="container-fluid">
-    <form  action="console.html?" method="GET" onsubmit="return validate()" class="form-horizontal" style="margin-top: 50px;" target="nm_iframe">
+    <form  action="console.html?" method="GET" class="form-horizontal" style="margin-top: 50px;" target="nm_iframe">
         <div class="form-group">
-            <label for="port" class="col-sm-4 control-label">服务器端口号</label>
+            <label for="path" class="col-sm-4 control-label">服务器端口号</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" name="port" id="port" placeholder="端口号">
+              <input type="text" class="form-control" name="path" id="path" placeholder="端口号">
           </div>
       </div>
       <div class="form-group">
@@ -47,17 +86,6 @@ if (submitOK=="false")
 
 
 <div class="col-sm-2"></div>
-<div class="col-sm-8">
-    <table class="table table-striped">
-        <thead>操作日志</thead>
-        <tr>
-            <th>操作者</th>
-            <th>操作内容</th>
-        </tr>
-        <tr>
-            <td>January</td>
-            <td>$100</td>
-        </tr>
-    </table>
-</div>
+<div class="col-sm-8" id="txtCDInfo"></div>
+
 </body>
