@@ -23,12 +23,12 @@
       {
           if (xmlhttp.readyState==4 && xmlhttp.status==200)
           {
-            txt="<table  class='table table-striped'><thead>操作日志</thead><tr><th>操作者</th><th>操作内容</th></tr>";
+            txt="<table  class='table table-striped'><thead>操作日志</thead><tr><th>Request</th><th>Host</th></tr>";
             x=xmlhttp.responseXML.documentElement.getElementsByTagName("CD");
             for (i=0;i<x.length;i++)
             {
               txt=txt + "<tr>";
-              xx=x[i].getElementsByTagName("HANDLERS");
+              xx=x[i].getElementsByTagName("REQUEST");
               {
                 try
                 {
@@ -39,7 +39,7 @@
                   txt=txt + "<td> </td>";
               }
           }
-          xx=x[i].getElementsByTagName("EVENTS");
+          xx=x[i].getElementsByTagName("HOST");
           {
             try
             {
