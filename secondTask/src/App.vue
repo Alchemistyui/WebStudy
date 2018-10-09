@@ -3,6 +3,7 @@
     
     <create-new></create-new>
     <list></list>
+    <!-- <App2></App2> -->
 
   </div>
 
@@ -11,12 +12,14 @@
 <script>
 import CreateNew from './components/CreateNew'
 import List from './components/List'
+import App2 from './App2'
 
 export default {
   name: 'app',
   components: {
     List,
-    CreateNew
+    CreateNew,
+    App2
   }
 }
 
